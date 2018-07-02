@@ -21,6 +21,20 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+    .hl {
+      color: var(--base);
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -45,6 +59,22 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input')
+
+    function handleUpdate() {
+      // this.dataset contains all the html data attributes (data-sizing)
+      const suffix = this.dataset.sizing || ''
+
+      // documentElement is the root of the element
+      // this.name is the name html attr
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+    }
+
+    // Listen chen we click to change
+    inputs.forEach(input => input.addEventListener('change', handleUpdate))
+
+    // Listen also when we hold and slide the slider
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
   </script>
 
 </body>
