@@ -71,6 +71,7 @@ nav ul {
   display: block;
 }
 
+/* First display, then after 15ms change opacity */
 .trigger-enter-active .dropdown {
   opacity: 1;
 }
